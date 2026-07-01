@@ -59,6 +59,7 @@ flutter:
 
   assets:
     - assets/fonts/
+    - assets/content.json
 
   fonts:
     - family: NotoSansKR
