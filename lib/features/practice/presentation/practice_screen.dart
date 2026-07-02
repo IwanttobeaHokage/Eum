@@ -311,6 +311,14 @@ class _CompletionScreen extends StatelessWidget {
                   child: const Text('홈으로 돌아가기'),
                 ),
               ),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () => context.go('/analysis'),
+                  child: const Text('분석 결과 보기'),
+                ),
+              ),
             ],
           ),
         ),

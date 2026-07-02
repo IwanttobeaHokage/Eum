@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../providers/record_provider.dart';
+import '../../analysis/providers/analysis_provider.dart';
 
 class RecordScreen extends ConsumerWidget {
   const RecordScreen({super.key});
@@ -25,7 +26,7 @@ class RecordScreen extends ConsumerWidget {
           TextButton(
             onPressed: form.isValid
                 ? () {
-                    notifier.submit();
+                    ref.read(pendingRecordProvider.notifier).state = form;
                     context.go('/analysis');
                   }
                 : null,
@@ -119,7 +120,7 @@ class RecordScreen extends ConsumerWidget {
               child: ElevatedButton.icon(
                 onPressed: form.isValid
                     ? () {
-                        notifier.submit();
+                        ref.read(pendingRecordProvider.notifier).state = form;
                         context.go('/analysis');
                       }
                     : null,

@@ -23,6 +23,28 @@ class ContentItem {
     this.evidenceNote = '',
   });
 
+  // API 응답 파싱 (duration 키 이름이 durationMinutes)
+  factory ContentItem.fromApiJson(Map<String, dynamic> json) {
+    final typeStr = json['type'] as String;
+    final type = typeStr == 'CBT'
+        ? ContentType.cbt
+        : typeStr == 'DBT'
+            ? ContentType.dbt
+            : ContentType.mindfulness;
+
+    return ContentItem(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      type: type,
+      steps: List<String>.from(json['steps'] as List),
+      durationMinutes: json['durationMinutes'] as int,
+      targetThemes: List<String>.from(json['targetThemes'] as List),
+      targetEmotions: List<String>.from(json['targetEmotions'] as List),
+      evidenceNote: json['evidenceNote'] as String? ?? '',
+    );
+  }
+
   factory ContentItem.fromJson(Map<String, dynamic> json) {
     final typeStr = json['type'] as String;
     final type = typeStr == 'CBT'

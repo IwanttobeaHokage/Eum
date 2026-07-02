@@ -12,4 +12,15 @@ class Recommendation {
     required this.items,
     required this.reason,
   });
+
+  factory Recommendation.fromJson(Map<String, dynamic> json) {
+    return Recommendation(
+      id: json['id'] as String,
+      analysisId: json['analysisId'] as String,
+      items: (json['items'] as List)
+          .map((e) => ContentItem.fromApiJson(e as Map<String, dynamic>))
+          .toList(),
+      reason: json['reason'] as String,
+    );
+  }
 }

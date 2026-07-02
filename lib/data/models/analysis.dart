@@ -14,4 +14,19 @@ class Analysis {
     required this.themes,
     required this.emotionScores,
   });
+
+  factory Analysis.fromJson(Map<String, dynamic> json) {
+    return Analysis(
+      id: json['id'] as String,
+      recordId: json['recordId'] as String,
+      summary: json['summary'] as String,
+      keywords: List<String>.from(json['keywords'] as List),
+      themes: List<String>.from(json['themes'] as List),
+      emotionScores: Map<String, double>.fromEntries(
+        (json['emotionScores'] as Map<String, dynamic>)
+            .entries
+            .map((e) => MapEntry(e.key, (e.value as num).toDouble())),
+      ),
+    );
+  }
 }
